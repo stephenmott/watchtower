@@ -33,6 +33,20 @@ $ docker run --detach \
 
 Watchtower is intended to be used in homelabs, media centers, local dev environments, and similar. We do **not** recommend using Watchtower in a commercial or production environment. If that is you, you should be looking into using Kubernetes. If that feels like too big a step for you, please look into solutions like [MicroK8s](https://microk8s.io/) and [k3s](https://k3s.io/) that take away a lot of the toil of running a Kubernetes cluster. 
 
+## Fork Notes (Apple Silicon / Modern Docker)
+
+This fork includes fixes for running on Apple Silicon (M1/M2/M3) Macs with modern Docker Desktop:
+
+- **Docker API version**: Updated minimum from 1.25 to 1.44 (required by Docker Engine 25+)
+- **Multi-arch builds**: Dockerfile now properly builds for `linux/arm64`
+
+To build locally:
+```bash
+docker build --platform linux/arm64 -f dockerfiles/Dockerfile.dev-self-contained -t watchtower:local .
+```
+
+See `docker-compose.local.yml` for a simple deployment example.
+
 ## Documentation
 The full documentation is available at https://containrrr.dev/watchtower.
 
