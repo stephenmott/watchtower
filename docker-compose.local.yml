@@ -6,7 +6,8 @@ services:
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # Watchtower needs read/write access to manage containers (no :ro)
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       # Uncomment and set these as needed:
       # WATCHTOWER_SCHEDULE: "0 0 4 * * *"  # Run at 4am daily (cron format)
