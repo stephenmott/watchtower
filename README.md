@@ -40,12 +40,27 @@ This fork includes fixes for running on Apple Silicon (M1/M2/M3) Macs with moder
 - **Docker API version**: Updated minimum from 1.25 to 1.44 (required by Docker Engine 25+)
 - **Multi-arch builds**: Dockerfile now properly builds for `linux/arm64`
 
+### Running with Docker Compose
+
+There are two compose files available:
+
+- **`docker-compose.yml`** - Builds from local source code (includes Prometheus/Grafana for metrics):
+  ```bash
+  docker-compose up -d
+  ```
+  This will compile and build Watchtower locally using `dockerfiles/Dockerfile.dev-self-contained`.
+
+- **`docker-compose.local.yml`** - Simple deployment example (pulls pre-built image or uses local):
+  ```bash
+  docker-compose -f docker-compose.local.yml up -d
+  ```
+
+### Building manually
+
 To build locally:
 ```bash
 docker build --platform linux/arm64 -f dockerfiles/Dockerfile.dev-self-contained -t watchtower:local .
 ```
-
-See `docker-compose.local.yml` for a simple deployment example.
 
 ## Documentation
 The full documentation is available at https://containrrr.dev/watchtower.
